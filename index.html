@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#dff2e5" />
+    <meta name="description" content="A little island life sim. Gather, fish, and make a home by the sea." />
+    <title>Mosswharf Island — a little life by the sea</title>
+    <link rel="icon" href="island-icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Mosswharf Island home">
+          <span class="brand-mark" aria-hidden="true">✿</span>
+          <span><strong>mosswharf</strong><small>island life, at your pace</small></span>
+        </a>
+        <div class="topbar-right">
+          <div class="weather-pill"><span class="weather-icon" aria-hidden="true">☀️</span><span>Sunny<br /><b>22°</b></span></div>
+          <div class="date-pill"><span class="date-icon" aria-hidden="true">📅</span><span><small>SATURDAY</small><b>September 26</b></span></div>
+          <div class="wallet"><span class="wallet-coin" aria-hidden="true">✦</span><span><small>POCKET BELLS</small><b id="bell-count">2,480</b></span></div>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow"><span class="live-dot"></span> YOUR ISLAND, YOUR STORY</p>
+          <h1>Good morning, <span>island friend.</span></h1>
+          <p class="welcome-copy">The sea is calm and the fruit is ripe. What shall we do today?</p>
+        </div>
+        <div class="clock-card"><span class="clock-sun" aria-hidden="true">☀</span><span><small>ISLAND TIME</small><b id="island-time">9:12 AM</b></span></div>
+      </section>
+
+      <section class="game-layout" aria-label="Mosswharf island game">
+        <div class="world-column">
+          <div class="world-toolbar">
+            <div class="location"><span class="location-pin" aria-hidden="true">⌖</span><span><b>Mosswharf</b><small>North shore · home sweet home</small></span></div>
+            <div class="toolbar-right"><span class="day-chip">DAY 04 <i>•</i> EARLY AUTUMN</span><button class="icon-button" id="help-button" aria-label="Show controls" title="Controls">?</button></div>
+          </div>
+
+          <div class="canvas-wrap" id="canvas-wrap">
+            <canvas id="island" aria-label="Isometric island. Use WASD or arrow keys to explore."></canvas>
+            <div class="map-label label-townhall"><span>🏛️</span> town square</div>
+            <div class="map-label label-home"><span>🏡</span> little home</div>
+            <div class="map-label label-pier"><span>⛵</span> driftwood pier</div>
+            <div class="time-weather"><span>☀</span> Clear skies</div>
+            <div class="action-prompt" id="action-prompt" hidden><span id="prompt-icon">✦</span><span id="prompt-text">Pick a shell</span><kbd>E</kbd></div>
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+            <div class="controls-card" id="controls-card" hidden>
+              <button class="close-help" id="close-help" aria-label="Close controls">×</button>
+              <span class="mini-eyebrow">A LITTLE FIELD GUIDE</span>
+              <h2>Take the long way.</h2>
+              <p>There is nowhere you need to be. Wander, pick up a few things, and let the tide set the pace.</p>
+              <div class="control-line"><span>Walk around</span><b>W A S D <i>or</i> ← ↑ ↓ →</b></div>
+              <div class="control-line"><span>Pick up / shake</span><b>E</b></div>
+              <div class="control-line"><span>Cast your line</span><b>F</b></div>
+              <div class="control-line"><span>Walk to a spot</span><b>Click</b></div>
+            </div>
+            <div class="game-controls" aria-label="Game controls">
+              <div class="dpad" aria-label="Touch movement pad">
+                <button data-move="up" aria-label="Move up">↑</button>
+                <button data-move="left" aria-label="Move left">←</button>
+                <button data-move="down" aria-label="Move down">↓</button>
+                <button data-move="right" aria-label="Move right">→</button>
+              </div>
+              <div class="action-buttons"><button class="game-button pick-button" id="pick-button"><span>✦</span><b>Pick up</b><kbd>E</kbd></button><button class="game-button fish-button" id="fish-button"><span>🎣</span><b>Cast a line</b><kbd>F</kbd></button></div>
+            </div>
+          </div>
+          <div class="world-footer">
+            <span class="footnote"><span class="sparkle">✧</span> A breeze is stirring through the trees.</span>
+            <span class="map-hint"><span>⌖</span> Walk around and see what you find</span>
+          </div>
+        </div>
+
+        <aside class="sidebar">
+          <section class="panel pocket-panel">
+            <div class="panel-heading"><div><span class="panel-kicker">WHAT YOU'RE CARRYING</span><h2>My pockets <span class="heading-sparkle">✦</span></h2></div><span class="pocket-count" id="pocket-count">0 / 20</span></div>
+            <div class="inventory-grid" id="inventory-grid" aria-label="Your pocket inventory"></div>
+            <div class="sell-row"><span><b>Market basket</b><small>Trade your finds for bells</small></span><button class="sell-button" id="sell-button"><span>Sell finds</span><b id="sell-total">0 ✦</b></button></div>
+          </section>
+
+          <section class="panel plans-panel">
+            <div class="panel-heading"><div><span class="panel-kicker">A FEW GENTLE PLANS</span><h2>Today's little list</h2></div><span class="list-flower" aria-hidden="true">✿</span></div>
+            <div class="task-list" id="task-list"></div>
+            <div class="plan-footer"><span class="leaf-icon">❧</span><span>No rush. The island will be here.</span></div>
+          </section>
+
+          <section class="neighbor-note">
+            <div class="note-avatar" aria-hidden="true">🦊</div>
+            <div><span class="note-title">A note from Maple</span><p>“I saw a little silver fish near the east shore this morning. Just thought you'd like to know!”</p><small>MAPLE · YOUR NEIGHBOR</small></div>
+            <span class="note-heart" aria-hidden="true">♡</span>
+          </section>
+          <p class="save-note"><span>☁</span> Your island saves as you go</p>
+        </aside>
+      </section>
+      <footer class="page-footer"><span>mosswharf island <i>✿</i> a small place to slow down</span><span>MADE FOR A QUIET MOMENT</span></footer>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
