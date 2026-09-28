@@ -2,102 +2,100 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#dff2e5" />
-    <meta name="description" content="A little island life sim. Gather, fish, and make a home by the sea." />
-    <title>Mosswharf Island — a little life by the sea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#9bd7dc" />
+    <meta name="description" content="An original island-life adventure inspired by Animal Crossing: New Horizons. Wander, make friends, gather, fish, and make a home." />
+    <title>Mosswharf — New Horizons</title>
     <link rel="icon" href="island-icon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#" aria-label="Mosswharf Island home">
-          <span class="brand-mark" aria-hidden="true">✿</span>
-          <span><strong>mosswharf</strong><small>island life, at your pace</small></span>
-        </a>
-        <div class="topbar-right">
-          <div class="weather-pill"><span class="weather-icon" aria-hidden="true">☀️</span><span>Sunny<br /><b>22°</b></span></div>
-          <div class="date-pill"><span class="date-icon" aria-hidden="true">📅</span><span><small>SATURDAY</small><b>September 26</b></span></div>
-          <div class="wallet"><span class="wallet-coin" aria-hidden="true">✦</span><span><small>POCKET BELLS</small><b id="bell-count">2,480</b></span></div>
+    <main class="game" id="game">
+      <canvas id="world" aria-label="Mosswharf Island. Explore using the arrow keys or WASD."></canvas>
+      <canvas id="minimap" width="180" height="142" aria-label="Island map"></canvas>
+
+      <header class="top-hud">
+        <div class="clock-card hud-glass">
+          <div class="clock-icon" id="weather-icon">☀</div>
+          <div><span class="hud-label" id="weekday">SATURDAY</span><strong id="clock">9:12 AM</strong></div>
+          <span class="hud-divider"></span>
+          <span class="season-mark">🍂</span>
+          <div><span class="hud-label">ISLAND WEATHER</span><strong id="weather-label">Clear skies</strong></div>
         </div>
+        <div class="island-sign"><span class="sign-leaf">✿</span><span><strong id="island-name">MOSSWHARF</strong><small>NEW HORIZONS</small></span><span class="sign-leaf">✿</span></div>
+        <button class="map-toggle hud-glass" id="map-toggle" aria-label="Open island map">
+          <canvas id="map-preview" width="84" height="66"></canvas><span class="map-label">ISLAND MAP <b>＋</b></span>
+        </button>
       </header>
 
-      <section class="welcome-row">
-        <div>
-          <p class="eyebrow"><span class="live-dot"></span> YOUR ISLAND, YOUR STORY</p>
-          <h1>Good morning, <span>island friend.</span></h1>
-          <p class="welcome-copy">The sea is calm and the fruit is ripe. What shall we do today?</p>
-        </div>
-        <div class="clock-card"><span class="clock-sun" aria-hidden="true">☀</span><span><small>ISLAND TIME</small><b id="island-time">9:12 AM</b></span></div>
-      </section>
+      <div class="world-toast" id="world-toast" role="status" aria-live="polite"></div>
+      <div class="interaction-hint" id="interaction-hint" hidden><kbd>E</kbd><span id="interaction-copy">Talk</span></div>
+      <div class="fish-bite" id="fish-bite" hidden>🐟  A nibble! Press <kbd>SPACE</kbd></div>
 
-      <section class="game-layout" aria-label="Mosswharf island game">
-        <div class="world-column">
-          <div class="world-toolbar">
-            <div class="location"><span class="location-pin" aria-hidden="true">⌖</span><span><b>Mosswharf</b><small>North shore · home sweet home</small></span></div>
-            <div class="toolbar-right"><span class="day-chip">DAY 04 <i>•</i> EARLY AUTUMN</span><button class="icon-button" id="help-button" aria-label="Show controls" title="Controls">?</button></div>
-          </div>
+      <section class="bottom-hud" aria-label="Game controls">
+        <button class="phone-button" id="phone-button" aria-label="Open NookPhone">
+          <span class="phone-device"><span class="phone-screen">✿</span><span class="phone-camera"></span></span>
+          <span class="phone-caption">NookPhone <kbd>Tab</kbd></span>
+          <span class="phone-notice" id="phone-notice" hidden>!</span>
+        </button>
 
-          <div class="canvas-wrap" id="canvas-wrap">
-            <canvas id="island" aria-label="Isometric island. Use WASD or arrow keys to explore."></canvas>
-            <div class="map-label label-townhall"><span>🏛️</span> town square</div>
-            <div class="map-label label-home"><span>🏡</span> little home</div>
-            <div class="map-label label-pier"><span>⛵</span> driftwood pier</div>
-            <div class="time-weather"><span>☀</span> Clear skies</div>
-            <div class="action-prompt" id="action-prompt" hidden><span id="prompt-icon">✦</span><span id="prompt-text">Pick a shell</span><kbd>E</kbd></div>
-            <div class="toast" id="toast" role="status" aria-live="polite"></div>
-            <div class="controls-card" id="controls-card" hidden>
-              <button class="close-help" id="close-help" aria-label="Close controls">×</button>
-              <span class="mini-eyebrow">A LITTLE FIELD GUIDE</span>
-              <h2>Take the long way.</h2>
-              <p>There is nowhere you need to be. Wander, pick up a few things, and let the tide set the pace.</p>
-              <div class="control-line"><span>Walk around</span><b>W A S D <i>or</i> ← ↑ ↓ →</b></div>
-              <div class="control-line"><span>Pick up / shake</span><b>E</b></div>
-              <div class="control-line"><span>Cast your line</span><b>F</b></div>
-              <div class="control-line"><span>Walk to a spot</span><b>Click</b></div>
-            </div>
-            <div class="game-controls" aria-label="Game controls">
-              <div class="dpad" aria-label="Touch movement pad">
-                <button data-move="up" aria-label="Move up">↑</button>
-                <button data-move="left" aria-label="Move left">←</button>
-                <button data-move="down" aria-label="Move down">↓</button>
-                <button data-move="right" aria-label="Move right">→</button>
-              </div>
-              <div class="action-buttons"><button class="game-button pick-button" id="pick-button"><span>✦</span><b>Pick up</b><kbd>E</kbd></button><button class="game-button fish-button" id="fish-button"><span>🎣</span><b>Cast a line</b><kbd>F</kbd></button></div>
-            </div>
-          </div>
-          <div class="world-footer">
-            <span class="footnote"><span class="sparkle">✧</span> A breeze is stirring through the trees.</span>
-            <span class="map-hint"><span>⌖</span> Walk around and see what you find</span>
+        <div class="toolbelt-wrap">
+          <div class="toolbelt-title">TOOLS <span>·</span> <small>1–4 SELECT</small></div>
+          <div class="toolbelt" id="toolbelt" role="toolbar" aria-label="Tool belt">
+            <button class="tool-slot selected" data-tool="net" aria-label="Equip bug net, key 1"><span>🪰</span><small>NET</small><i class="durability"><b></b></i></button>
+            <button class="tool-slot" data-tool="rod" aria-label="Equip fishing rod, key 2"><span>🎣</span><small>ROD</small><i class="durability"><b></b></i></button>
+            <button class="tool-slot" data-tool="axe" aria-label="Equip axe, key 3"><span>🪓</span><small>AXE</small><i class="durability"><b></b></i></button>
+            <button class="tool-slot" data-tool="shovel" aria-label="Equip shovel, key 4"><span>⛏️</span><small>SHOVEL</small><i class="durability"><b></b></i></button>
           </div>
         </div>
 
-        <aside class="sidebar">
-          <section class="panel pocket-panel">
-            <div class="panel-heading"><div><span class="panel-kicker">WHAT YOU'RE CARRYING</span><h2>My pockets <span class="heading-sparkle">✦</span></h2></div><span class="pocket-count" id="pocket-count">0 / 20</span></div>
-            <div class="inventory-grid" id="inventory-grid" aria-label="Your pocket inventory"></div>
-            <div class="sell-row"><span><b>Market basket</b><small>Trade your finds for bells</small></span><button class="sell-button" id="sell-button"><span>Sell finds</span><b id="sell-total">0 ✦</b></button></div>
-          </section>
-
-          <section class="panel plans-panel">
-            <div class="panel-heading"><div><span class="panel-kicker">A FEW GENTLE PLANS</span><h2>Today's little list</h2></div><span class="list-flower" aria-hidden="true">✿</span></div>
-            <div class="task-list" id="task-list"></div>
-            <div class="plan-footer"><span class="leaf-icon">❧</span><span>No rush. The island will be here.</span></div>
-          </section>
-
-          <section class="neighbor-note">
-            <div class="note-avatar" aria-hidden="true">🦊</div>
-            <div><span class="note-title">A note from Juniper</span><p>“I saw a little silver fish near the east shore this morning. Just thought you'd like to know!”</p><small>JUNIPER · YOUR NEIGHBOR</small></div>
-            <span class="note-heart" aria-hidden="true">♡</span>
-          </section>
-          <p class="save-note"><span>☁</span> Your island saves as you go</p>
-        </aside>
+        <div class="wallet hud-glass">
+          <div class="bell-purse"><span>✦</span></div>
+          <div class="wallet-main"><small>BELLS</small><strong id="bell-count">5,000</strong></div>
+          <div class="wallet-divider"></div>
+          <div class="loan-info"><small>HOME LOAN</small><strong><span id="loan-count">98,000</span> <i>left</i></strong><div class="loan-track"><b id="loan-progress"></b></div></div>
+        </div>
       </section>
-      <footer class="page-footer"><span>mosswharf island <i>✿</i> a small place to slow down</span><span>MADE FOR A QUIET MOMENT</span></footer>
+
+      <div class="action-dock" aria-label="Touch controls">
+        <div class="dpad">
+          <button data-move="up" aria-label="Walk north">↑</button>
+          <button data-move="left" aria-label="Walk west">←</button>
+          <button data-move="down" aria-label="Walk south">↓</button>
+          <button data-move="right" aria-label="Walk east">→</button>
+        </div>
+        <button class="use-tool" id="use-tool" aria-label="Use selected tool"><span id="use-tool-icon">🪰</span><small>USE TOOL</small></button>
+        <button class="talk-button" id="talk-button" aria-label="Talk or pick up"><span>Ａ</span><small>TALK</small></button>
+      </div>
+
+      <div class="screen-overlay" id="screen-overlay" hidden>
+        <section class="phone-panel overlay-panel" id="phone-panel" hidden aria-labelledby="phone-title">
+          <button class="panel-close" data-close aria-label="Close">×</button>
+          <div class="phone-heading"><span class="phone-device large"><span class="phone-screen">✿</span></span><div><small>ISLAND SERVICES</small><h2 id="phone-title">NookPhone</h2></div></div>
+          <div class="phone-apps">
+            <button data-page="pockets"><span>🎒</span><b>Pockets</b></button>
+            <button data-page="diy"><span>🛠️</span><b>DIY Recipes</b></button>
+            <button data-page="miles"><span>✈️</span><b>Nook Miles</b></button>
+            <button data-page="passport"><span>🪪</span><b>Passport</b></button>
+            <button data-page="map"><span>🗺️</span><b>Island Map</b></button>
+            <button data-page="home"><span>🏠</span><b>Home</b></button>
+          </div>
+          <div class="phone-bottom"><span>☎</span> A little help, wherever you wander.</div>
+        </section>
+
+        <section class="paper-panel overlay-panel" id="content-panel" hidden aria-live="polite">
+          <button class="panel-close" data-close aria-label="Close">×</button>
+          <div class="paper-content" id="panel-content"></div>
+        </section>
+      </div>
+
+      <section class="dialogue-box" id="dialogue-box" hidden aria-live="polite">
+        <div class="dialogue-portrait" id="dialogue-portrait">🦦</div>
+        <div class="dialogue-main"><div class="dialogue-name" id="dialogue-name">Tilly <span>resident representative</span></div><p id="dialogue-text"></p><div class="dialogue-options" id="dialogue-options"></div></div>
+        <button class="dialogue-close" id="dialogue-close" aria-label="Close conversation">×</button>
+      </section>
+
+      <div class="start-note" id="start-note"><span>🌴</span><strong>Welcome to Mosswharf!</strong><small>WASD to walk · E to interact · SPACE to use your tool</small><button id="dismiss-note" aria-label="Dismiss">×</button></div>
     </main>
     <script src="game.js"></script>
   </body>
