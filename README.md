@@ -1,5 +1,9 @@
 # Mosswharf Island
 
+## Play online
+
+[Play Mosswharf](https://intrepion.github.io/kata-animal-crossing-clone-gpt-6-luna-extra-high/) — free, playable in your browser.
+
 A browser-playable island life sim inspired by the cozy routines of Animal Crossing: New Horizons. Walk around a continuous 3/4-view island, meet its residents, gather and catch things, make tools, decorate outdoors, visit the shop and museum, and expand a home through staged loans. Mosswharf, its residents, and its artwork are original.
 
 ## Play
