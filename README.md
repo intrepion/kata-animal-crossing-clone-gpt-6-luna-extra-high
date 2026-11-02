@@ -32,3 +32,7 @@ Open `index.html` in a modern browser. There is no build step or dependency inst
 - Your inventory, tools, discoveries, furniture, home level, loan balance, and position save in this browser.
 
 The resident illustrations are bundled in `assets/island-residents.png`; all other scene art is drawn by the game canvas. The game runs locally without external services or dependencies.
+
+## Arcade metadata
+
+See [docs/arcade-metadata.md](docs/arcade-metadata.md) for the game-owned manifest and screenshot provenance.
