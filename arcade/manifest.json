@@ -1,6 +1,51 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "gameId": "kata-animal-crossing-clone-gpt-6-luna-extra-high",
   "playUrl": "https://intrepion.github.io/kata-animal-crossing-clone-gpt-6-luna-extra-high/",
-  "screenshots": []
+  "screenshots": [
+    {
+      "path": "arcade/screenshots/ci-20261102-01.jpg",
+      "sha256": "b8c5346d35e6b966a3f70fb632bff4daab9c30f62685bdfc5af718873ef1ee73",
+      "alt": "Mosswharf gameplay, view 1",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-01.png",
+        "sourceSha256": "4d19f6e83f4142740d874e407d7f953584a45bd290dd767da2b523ff8bec429a",
+        "captureCommit": "90b861a74169e082d497c5f65face0aa3bc80666",
+        "workflowRunId": "41399394693",
+        "inputHashes": {
+          "index.html": "e7128b1c0a33b06272e62087090ac7ecdc566adeeb4b9f196eaff9d1cc8756c6",
+          "styles.css": "fc905f6c006b73072943285e1bf534c5fa68aade8c06e53d926a64e8e5a86ec2",
+          "game.js": "886cf53299b44c104e7875f1fe5d29751cf7dac0880c4144d3152414a3a8aa27",
+          "island-icon.svg": "5ace2523d874b68dd2f68604f1c264455dec38fc252cc6912e2f91fb41d60f01",
+          "assets/island-residents.png": "2071fa4dbd38f0f9a9be5b22b3a14efed95f918bd92ad328d49dde4256da8990"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "da936b0ff065f4fc8a685bf1e516a869f2b63f399d3bd2c18123d7d932f1e524"
+      }
+    },
+    {
+      "path": "arcade/screenshots/ci-20261102-02.jpg",
+      "sha256": "5b9e8415986e8b4e97d2e1657e0fdacd86c6ff20bbcec853ba6249dff6ba871a",
+      "alt": "Mosswharf gameplay, view 2",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-02.png",
+        "sourceSha256": "8d274472b3eecec4b7cf2e98298a20da5832d0a161023d89b5af254e4320c082",
+        "captureCommit": "90b861a74169e082d497c5f65face0aa3bc80666",
+        "workflowRunId": "41399394693",
+        "inputHashes": {
+          "index.html": "e7128b1c0a33b06272e62087090ac7ecdc566adeeb4b9f196eaff9d1cc8756c6",
+          "styles.css": "fc905f6c006b73072943285e1bf534c5fa68aade8c06e53d926a64e8e5a86ec2",
+          "game.js": "886cf53299b44c104e7875f1fe5d29751cf7dac0880c4144d3152414a3a8aa27",
+          "island-icon.svg": "5ace2523d874b68dd2f68604f1c264455dec38fc252cc6912e2f91fb41d60f01",
+          "assets/island-residents.png": "2071fa4dbd38f0f9a9be5b22b3a14efed95f918bd92ad328d49dde4256da8990"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "da936b0ff065f4fc8a685bf1e516a869f2b63f399d3bd2c18123d7d932f1e524"
+      }
+    }
+  ]
 }

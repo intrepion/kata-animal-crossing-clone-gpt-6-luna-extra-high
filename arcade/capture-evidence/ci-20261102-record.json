@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "workflowCommit": "ea4cf226b450c8e6da2e3324cf4e2696fa8da243",
+  "sourceCommit": "90b861a74169e082d497c5f65face0aa3bc80666",
+  "runId": "41399394693",
+  "url": "http://127.0.0.1:4211/",
+  "inputs": {
+    "index.html": "e7128b1c0a33b06272e62087090ac7ecdc566adeeb4b9f196eaff9d1cc8756c6",
+    "styles.css": "fc905f6c006b73072943285e1bf534c5fa68aade8c06e53d926a64e8e5a86ec2",
+    "game.js": "886cf53299b44c104e7875f1fe5d29751cf7dac0880c4144d3152414a3a8aa27",
+    "island-icon.svg": "5ace2523d874b68dd2f68604f1c264455dec38fc252cc6912e2f91fb41d60f01",
+    "assets/island-residents.png": "2071fa4dbd38f0f9a9be5b22b3a14efed95f918bd92ad328d49dde4256da8990"
+  },
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "externalFonts": "blocked; system fallback",
+  "screenshots": [
+    "mosswharf-01.png",
+    "mosswharf-02.png"
+  ]
+}
